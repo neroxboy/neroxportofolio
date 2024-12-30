@@ -1,0 +1,136 @@
+.chat-room {
+    width: 100%;
+    max-width: 1800px; /* Increased width to match other components */
+    min-height: 80vh;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    margin-bottom: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    border-radius: 15px;
+    max-height: 60vh;
+}
+
+.message {
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    max-width: 80%;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.message.user {
+    margin-left: auto;
+    background: rgba(29, 185, 84, 0.15); /* Spotify green */
+    backdrop-filter: blur(5px);
+    border-bottom-right-radius: 5px;
+}
+
+.message.assistant {
+    margin-right: auto;
+    background: rgba(97, 218, 251, 0.15); /* React blue */
+    backdrop-filter: blur(5px);
+    border-bottom-left-radius: 5px;
+}
+
+.input-container {
+    display: flex;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    padding: 20px;
+    border-radius: 15px;
+}
+
+textarea {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    resize: none;
+    min-height: 50px;
+    font-size: 16px;
+}
+
+button {
+    padding: 15px 30px;
+    background: #1DB954;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #1ed760;
+    transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 1800px) {
+    .chat-room {
+        max-width: 1600px;
+    }
+}
+
+@media (max-width: 1400px) {
+    .chat-room {
+        max-width: 1200px;
+        padding: 25px;
+    }
+}
+
+@media (max-width: 992px) {
+    .chat-room {
+        max-width: 800px;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .chat-room {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .message {
+        max-width: 90%;
+    }
+
+    .input-container {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
