@@ -40,7 +40,7 @@ function App() {
     getAccessToken();
   }, [clientId, clientSecret]);
 
-  const getAvailableDevices = async () => {
+  const getAvailableDevices = useCallback(async () => {
     try {
         const response = await axios.get('https://api.spotify.com/v1/me/player/devices', {
             headers: { Authorization: `Bearer ${accessToken}` }
@@ -49,10 +49,12 @@ function App() {
     } catch (error) {
         console.error('Error fetching devices:', error); // Debug log
     }
-};
+}, [accessToken]);
 
 useEffect(() => {
-    getAvailableDevices();
+    if (accessToken) {
+        getAvailableDevices();
+    }
 }, [accessToken, getAvailableDevices]);
 
   const particlesInit = useCallback(async (engine) => {

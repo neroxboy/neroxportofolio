@@ -340,8 +340,7 @@ p {
     z-index: 0;
 }
 
-/* ...existing styles... */
-
+/* Angular Particles */
 .angular-particles {
   position: fixed;
   top: 0;
@@ -381,7 +380,5 @@ p {
   transition: transform 0.3s ease-out;
   transform-origin: center center;
 }
-
-/* ...existing styles... */
 
 

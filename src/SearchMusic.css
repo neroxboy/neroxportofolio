@@ -47,19 +47,28 @@
   border-radius: 5px;
   max-height: 300px;
   overflow-y: auto; /* Allow vertical scrolling */
-  background: rgba(0, 0, 0, 0.3);
-  padding: 20px;
+  background: linear-gradient(180deg, rgba(24, 24, 24, 0.95) 0%, rgba(18, 18, 18, 0.95) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
-  margin-top: 20px;
+  padding: 2rem;
+  position: relative;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
 }
 
 .lyrics p {
   margin: 0 0 10px;
   color: #b3b3b3; /* Default text color */
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0.75rem;
+  transition: color 0.2s ease;
 }
 
 .lyrics p.active {
   color: white; /* Active text color */
+  color: #2ebd59;
+  font-weight: 500;
 }
 
 /* Scrollbar Customization */
@@ -322,48 +331,67 @@
   align-items: flex-start;
   min-height: 100vh;
   width: 100%;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.1); /* White transparent background */
-  backdrop-filter: blur(10px);
+  padding: 2rem;
   position: relative;
   overflow-y: auto;
-  margin: auto; /* Auto margin to center the container */
-  box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
-  transition: all 0.3s ease; /* Add transition for smooth background change */
+  background: transparent; /* Remove gradient background */
+  z-index: 1;
 }
 
+/* Angular Particles - Removed color */
 .angular-particles {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: fixed;
   width: 100%;
   height: 100%;
-  z-index: 0; /* Ensure particles are behind other elements */
+  top: 0;
+  left: 0;
+  z-index: -1;
   overflow: hidden;
+  background: rgba(18, 18, 18, 0.95);
 }
 
 .angular-particle {
   position: absolute;
-  width: 25px;
-  height: 25px;
-  background: rgba(97, 218, 251, 0.2); /* React blue */
-  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-  animation: floatParticle 25s infinite linear;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, rgba(29, 185, 84, 0.15), rgba(30, 215, 96, 0.08));
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  animation: floatAngular 20s infinite linear;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  33% {
+    transform: translateY(-50px) rotate(120deg) scale(1.2);
+  }
+  66% {
+    transform: translateY(25px) rotate(240deg) scale(0.8);
+  }
+  100% {
+    transform: translateY(0) rotate(360deg) scale(1);
+  }
 }
 
 @keyframes floatParticle {
   0% {
     transform: rotate(0deg) translate(0) scale(1);
-    opacity: 0.6;
+    opacity: 0.4;
   }
   50% {
-    transform: rotate(180deg) translate(150px) scale(1.2);
-    opacity: 0.3;
+    transform: rotate(180deg) translate(100px) scale(1.2);
+    opacity: 0.2;
   }
   100% {
     transform: rotate(360deg) translate(0) scale(1);
-    opacity: 0.6;
+    opacity: 0.4;
   }
+}
+
+@keyframes floatAngular {
+   0%, 100% { transform: rotate(0deg) translate(0) scale(1); opacity: 0.2; }
+   50% { transform: rotate(180deg) translate(100px) scale(1.2); opacity: 0.1; }
 }
 
 .spotify-card {
@@ -380,6 +408,9 @@
   border-radius: 20px;
   padding: 50px;
   min-height: 100vh; /* Ensure card extends to full height */
+  background: rgba(18, 18, 18, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 .spotify-left {
@@ -579,26 +610,293 @@
   font-size: 0.9em;
 }
 
-.angular-particle {
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  background: rgba(97, 218, 251, 0.2); /* React blue */
-  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-  animation: floatParticle 25s infinite linear;
+.top-tracks-section {
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
-@keyframes floatParticle {
-  0% {
-    transform: rotate(0deg) translate(0) scale(1);
-    opacity: 0.6;
-  }
-  50% {
-    transform: rotate(180deg) translate(150px) scale(1.2);
-    opacity: 0.3;
-  }
-  100% {
-    transform: rotate(360deg) translate(0) scale(1);
-    opacity: 0.6;
-  }
+.top-tracks-section h2 {
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 1.8em;
+  text-align: left;
+  padding-left: 10px;
+  border-left: 4px solid #1DB954;
+}
+
+.top-tracks-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.track-embed-container {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  gap: 15px;
+}
+
+.track-embed-container:hover {
+  background: rgba(29, 185, 84, 0.1);
+  transform: translateX(5px);
+}
+
+.track-rank {
+  width: 24px;
+  height: 24px;
+  background: #1DB954;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+/* Customize scrollbar */
+.top-tracks-section::-webkit-scrollbar {
+  width: 6px;
+}
+
+.top-tracks-section::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.top-tracks-section::-webkit-scrollbar-thumb {
+  background: #1DB954;
+  border-radius: 3px;
+}
+
+.track-embed-container {
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  height: 152px; /* Fixed height for each track */
+  margin-bottom: 5px; /* Reduced margin between tracks */
+}
+
+.track-embed-container:hover {
+  transform: translateX(10px);
+}
+
+.track-rank {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #1DB954;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2em;
+  z-index: 2;
+}
+
+.top-track-item {
+  display: grid;
+  grid-template-columns: 40px 80px 1fr;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.top-track-item:hover {
+  background: rgba(29, 185, 84, 0.2);
+  transform: translateX(10px);
+}
+
+.track-rank {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #1DB954;
+  text-align: center;
+}
+
+.track-thumbnail {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.track-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.track-info strong {
+  color: #fff;
+  font-size: 1.1em;
+}
+
+.track-info span {
+  color: #b3b3b3;
+  font-size: 0.9em;
+}
+
+/* Copy Button Styles */
+.copy-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 6px 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+}
+
+.copy-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.copy-button:active {
+  transform: scale(0.95);
+  transform: translateY(0);
+}
+
+.copy-button.copied {
+  background-color: #10a37f;
+  border-color: #10a37f;
+  background: #2ebd59;
+  border-color: #2ebd59;
+}
+
+.copy-button svg {
+  width: 14px;
+  height: 14px;
+  width: 16px;
+  height: 16px;
+  opacity: 0.9;
+}
+
+.copy-button .copy-icon,
+.copy-button .check-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copy-button .check-icon {
+  display: none;
+}
+
+.copy-button.copied .copy-icon {
+  display: none;
+}
+
+.copy-button.copied .check-icon {
+  display: flex;
+}
+
+/* Position relative wrapper for copy button */
+.content-wrapper {
+  position: relative;
+  position: relative;
+  padding-top: 1rem;
+}
+
+/* Chat-like Message Container */
+.message-container {
+  background: rgba(32, 32, 32, 0.95);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.message-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.message-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #2ebd59;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.message-name {
+  font-weight: 600;
+  color: #fff;
+}
+
+.message-content {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
 }

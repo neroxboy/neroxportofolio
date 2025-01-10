@@ -75,3 +75,38 @@ body {
   height: 100%;
   z-index: 0;
 }
+
+/* Angular Particles */
+.angular-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Ensure particles are behind other elements */
+  overflow: hidden;
+}
+
+.angular-particle {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background: rgba(97, 218, 251, 0.2); /* React blue */
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  animation: floatParticle 50s infinite linear; /* Slowed down animation */
+}
+
+@keyframes floatParticle {
+  0% {
+    transform: rotate(0deg) translate(0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: rotate(180deg) translate(150px) scale(1.2);
+    opacity: 0.3;
+  }
+  100% {
+    transform: rotate(360deg) translate(0) scale(1);
+    opacity: 0.6;
+  }
+}
